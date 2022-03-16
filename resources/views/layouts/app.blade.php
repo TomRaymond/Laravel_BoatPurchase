@@ -3,8 +3,6 @@
     <head>
         <meta charset="utf-8">
         <title>{{ config('app.name', 'Boats"R"Us') }}</title>        
-         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- Styles -->
         <link href="https://bootswatch.com/5/flatly/bootstrap.min.css" rel="stylesheet">
         <!-- Fonts -->

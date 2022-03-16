@@ -26,4 +26,11 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_checkout_route_returns_200()
+    {
+        $response = $this->get('/checkout');
+
+        $response->assertStatus(200);
+    }
 }

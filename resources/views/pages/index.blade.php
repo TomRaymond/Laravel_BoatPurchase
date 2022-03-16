@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="container">
-    <button type="button" class="btn btn-primary btn-lg" onclick="window.location='{{ URL::route('pages.purchase'); }}'">Buy Now!</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="window.location='{{ URL::route('checkout.credit-card'); }}'">Buy Now!</button>
 </div>
 
 @endsection
