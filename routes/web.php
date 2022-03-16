@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', array('uses' => 'App\Http\Controllers\PagesController@index', 'as' => 'pages.index'));
+
+Route::get('/purchase', array('uses' => 'App\Http\Controllers\PagesController@purchase', 'as' => 'pages.purchase'));
