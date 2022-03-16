@@ -35,22 +35,6 @@ class CheckoutController extends Controller
 			'payment_method_types' => ['card'],
 		]);
 		$intent = $payment_intent->client_secret; 
-
-        /*
-        $checkout_session = \Stripe\Checkout\Session::create([
-            'success_url' => 'https://localhost/success.html?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => 'https://localhost/canceled.html',
-            'mode' => 'payment',
-            // 'automatic_tax' => ['enabled' => true],
-            'line_items' => [[
-              'price' => 'price_1Ke0hXIoZ94z7xJ0bfcK0bbR',
-              'quantity' => 1,
-            ]]
-          ]);
-
-          Session::flash('success', 'Payment done successfully!');
-          echo $checkout_session;
-          #return back(); */
         
 		return view('checkout.credit-card', compact('intent'));
     }
