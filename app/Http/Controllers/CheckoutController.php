@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use URL;
 use Session;
@@ -10,7 +11,7 @@ use Redirect;
 use Input;
 use App\User;
 use Stripe\Error\Card;
-//use Cartalyst\Stripe\Stripe;
+use App\Mail\ConfirmationEmail;
 
 class CheckoutController extends Controller
 {
@@ -35,7 +36,8 @@ class CheckoutController extends Controller
 			'payment_method_types' => ['card'],
 		]);
 		$intent = $payment_intent->client_secret; 
-        
+        info( $payment_intent->id);
+
 		return view('checkout.credit-card', compact('intent'));
     }
 
@@ -45,6 +47,8 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function purchaseComplete(){
+        $data = ['transaction_id' => '12345', 'price' => '500,000'];
+        Mail::to($_POST['email'])->send(new ConfirmationEmail($data));
         return view('checkout.purchase-complete');
     }
 }
