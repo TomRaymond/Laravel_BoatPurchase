@@ -29,7 +29,8 @@
                         @csrf            
                         <div class="col-md-12">
                             <label for="InputEmail" class="form-label mt-4">Where would you like us to send confirmation of your purchase?</label>
-                            <input type="email" class="form-control" name="email" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="text" class="form-control" name="email" id="input-email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <div id="email-errors" role="alert"></div>
                         </div>        
                         <div class="form-group mt-4">
                             <div class="card-header">
@@ -98,13 +99,45 @@
                 displayError.textContent = '';
             }
         });
+
+        const validateEmail = (email) => {
+            return email.match(
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+        };
+
+        var isEmailInvalid = true; // does the form have a valid email address entered
+        var email = document.getElementById('input-email');
+        email.addEventListener('input', function(event) {
+            const $result = $('#email-errors');
+            const $email_field = $('#input-email');
+            const email = $email_field.val();
+            $result.text('');
+
+            if (validateEmail(email)) {
+                $result.text('');
+                $email_field.css('color', 'black');
+                isEmailInvalid = false;
+            } else if (email === '') {            
+                $result.text('');
+                $email_field.css('color', 'black');
+                isEmailInvalid = true;
+            } else {
+                $result.text(email + ' is not a valid email address');
+                $email_field.css('color', 'red');
+                isEmailInvalid = true;
+            }
+        });    
     
         // Handle form submission.
         var form = document.getElementById('payment-form');
+        var isFormSubmitted = false;
     
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-    
+            if(isFormSubmitted) return; // user has already clicked submit 
+            if(isEmailInvalid) return;
+
         stripe.handleCardPayment(clientSecret, cardElement, {
                 payment_method_data: {
                     //billing_details: { name: cardHolderName.value }
@@ -118,6 +151,7 @@
                     errorElement.textContent = result.error.message;
                 } else {
                     console.log(result);
+                    isFormSubmitted = true;
                     form.submit();
                 }
             });

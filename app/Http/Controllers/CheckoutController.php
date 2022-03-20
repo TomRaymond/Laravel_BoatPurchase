@@ -22,12 +22,13 @@ class CheckoutController extends Controller
      */
     public function checkout()
     {   
-        // Enter Your Stripe Secret
+        // Set stripe secret key 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         
+        //TODO: pull data for payment intent creation from elsewhere
 		$amount = 50000000;
-        $amount = (int) $amount;
-        
+        $amount = (int)$amount;
+        // Create payment intent for the boat
         $payment_intent = \Stripe\PaymentIntent::create([
 			'description' => 'Stripe Test Payment',
 			'amount' => $amount,
@@ -35,8 +36,8 @@ class CheckoutController extends Controller
 			'description' => 'Payment From Codehunger',
 			'payment_method_types' => ['card'],
 		]);
-		$intent = $payment_intent->client_secret; 
-        info( $payment_intent->id);
+		$intent = $payment_intent->client_secret;
+        info($payment_intent);
 
 		return view('checkout.credit-card', compact('intent'));
     }
@@ -47,7 +48,7 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function purchaseComplete(){
-        $data = ['transaction_id' => '12345', 'price' => '500,000'];
+        $data = ['transaction_id' => '12345', 'price' => '500,000']; //TODO: drive email content from elsewhere
         Mail::to($_POST['email'])->send(new ConfirmationEmail($data));
         return view('checkout.purchase-complete');
     }
