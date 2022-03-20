@@ -20,17 +20,17 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_purchase_route_returns_200()
-    {
-        $response = $this->get('/purchase');
-
-        $response->assertStatus(200);
-    }
-
     public function test_checkout_route_returns_200()
     {
         $response = $this->get('/checkout');
 
         $response->assertStatus(200);
+    }
+
+    public function test_purchase_complete_route_returns_405()
+    {
+        $response = $this->get('/purchase-complete');
+
+        $response->assertStatus(405);
     }
 }

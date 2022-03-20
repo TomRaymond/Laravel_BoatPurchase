@@ -37,7 +37,6 @@ class CheckoutController extends Controller
 			'payment_method_types' => ['card'],
 		]);
 		$intent = $payment_intent->client_secret;
-        info($payment_intent);
 
 		return view('checkout.credit-card', compact('intent'));
     }
