@@ -21,21 +21,32 @@ class PurchastBoatTest extends DuskTestCase
     public function test_can_purchase_boat()
     {
         $this->browse(function (Browser $browser) {
+            // Navigate to checkout page and wait for card payment iframe to load
             $browser->visit('/checkout')
                     ->assertSee('Enter your credit card information')                    
                     ->assertPathIs('/checkout')
                     ->waitFor('#card-element iframe')
                     ->screenshot('loaded_checkout_page');
             
+            // get name of stripes injected payment iframe
             $iframe_name =  $browser->script('return $("#card-element iframe").attr("name");')[0];
             $browser->type('email', 'bobhampton388@hotmail.co.uk');
+            // within the stripe payment iframe, input test card information
             $browser->withinFrame('iframe[name='.$iframe_name.']', function($browser){
-                $browser->pause(3000);
                 $browser->keys('input[placeholder="Card number"]', '4242 4242 4242 4242')
-                    ->keys('input[placeholder="MM / YY"]', '0125')
+                    ->keys('input[placeholder="MM / YY"]', '0130')
+                    ->pause(100) // allow time for zip field to be displayed after entering card number
                     ->keys('input[placeholder="CVC"]', '123')
+                    ->keys('input[placeholder="ZIP"]', '12345')
                     ->screenshot('checkout_input_card_details');
             });
+
+            // Hit submit and confirm we reach the confirmation page
+            $browser->press('button[type="submit"')
+                    ->pause(5000) // wait for stripe to authenticate transaction
+                    ->waitForText('Thank you for your boat purchase')
+                    ->assertSee('Thank you for your boat purchase')   
+                    ->screenshot('checkout_transaction_complete');
         });
     }
 }
