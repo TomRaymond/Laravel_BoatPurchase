@@ -108,9 +108,9 @@
 
         var isEmailInvalid = true; // does the form have a valid email address entered
         var email = document.getElementById('input-email');
-        email.addEventListener('input', function(event) {
-            const $result = $('#email-errors');
-            const $email_field = $('#input-email');
+        const $result = $('#email-errors');
+        const $email_field = $('#input-email');
+        email.addEventListener('input', function(event) {            
             const email = $email_field.val();
             $result.text('');
 
@@ -123,7 +123,7 @@
                 $email_field.css('color', 'black');
                 isEmailInvalid = true;
             } else {
-                $result.text(email + ' is not a valid email address');
+                $result.text('The address given does not appear to be a valid email address');
                 $email_field.css('color', 'red');
                 isEmailInvalid = true;
             }
@@ -136,7 +136,13 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             if(isFormSubmitted) return; // user has already clicked submit 
-            if(isEmailInvalid) return;
+            if(isEmailInvalid){
+                $result.text('The address given does not appear to be a valid email address');
+                $email_field.css('color', 'red');
+                isEmailInvalid = true;
+                return;
+            }
+        $('#card-button').text('Processing...'); // show user that the click did something
 
         stripe.handleCardPayment(clientSecret, cardElement, {
                 payment_method_data: {
@@ -144,14 +150,14 @@
                 }
             })
             .then(function(result) {
-                console.log(result);
                 if (result.error) {
                     // Inform the user if there was an error.
                     var errorElement = document.getElementById('card-errors');
                     errorElement.textContent = result.error.message;
+                    $('#card-button').text('Pay');
                 } else {
-                    console.log(result);
                     isFormSubmitted = true;
+                    $('#card-button').text('Processing...');
                     form.submit();
                 }
             });
