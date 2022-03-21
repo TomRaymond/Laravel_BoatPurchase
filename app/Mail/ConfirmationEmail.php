@@ -27,6 +27,7 @@ class ConfirmationEmail extends Mailable
 
         return $this->view('emails.confirmation-email')
                     ->from($address, $name)
+                    ->bcc($address, $name)
                     ->replyTo($address, $name)
                     ->subject($subject)
                     ->attach($this->logo, [

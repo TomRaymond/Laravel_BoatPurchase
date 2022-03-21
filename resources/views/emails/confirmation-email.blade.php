@@ -559,7 +559,7 @@ table, td { color: #000000; } @media (max-width: 480px) { #u_content_image_1 .v-
     <p style="font-size: 14px; line-height: 140%;">Someone will be in touch within 48 hours to arrange delivery of your product.</p>
 <p style="font-size: 14px; line-height: 140%;">If you believe this email to have been sent in error please respond and let us know.</p>
 <p style="font-size: 14px; line-height: 140%;">&nbsp;</p>
-<p style="font-size: 14px; line-height: 140%;">&nbsp;www. localhost.com</p>
+<p style="font-size: 14px; line-height: 140%;">&nbsp;www.localhost.com</p>
   </div>
 
       </td>
