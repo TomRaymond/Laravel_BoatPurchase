@@ -521,7 +521,7 @@ table, td { color: #000000; } @media (max-width: 480px) { #u_content_image_1 .v-
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px;font-family:'Lato',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #333333; line-height: 120%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 120%;"><strong><span style="font-size: 30px; line-height: 36px;">$500,000</span></strong></p>
+    <p style="font-size: 14px; line-height: 120%;"><strong><span style="font-size: 30px; line-height: 36px;">£500,000</span></strong></p>
   </div>
 
       </td>

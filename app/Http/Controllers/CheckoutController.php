@@ -47,7 +47,7 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function purchaseComplete(){
-        $data = ['transaction_id' => '12345', 'price' => '500,000']; //TODO: drive email content from elsewhere
+        $data = ['transaction_id' => '12345', 'price' => '£500,000']; //TODO: drive email content from elsewhere
         Mail::to($_POST['email'])->send(new ConfirmationEmail($data));
         return view('checkout.purchase-complete');
     }
