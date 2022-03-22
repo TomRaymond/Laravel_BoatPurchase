@@ -19,7 +19,7 @@ class PurchaseBoatTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                     ->assertSee('Introducing the all-new Boat')
-                    ->press('Buy Now')
+                    ->press('Preorder Now')
                     ->assertPathIs('/checkout');
         });
     }

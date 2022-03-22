@@ -358,7 +358,7 @@ table, td { color: #000000; } @media (max-width: 480px) { #u_content_image_1 .v-
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px;font-family:'Lato',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px;">1 x Big Boat</span></p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px;">1 x Preorder of Big Boat</span></p>
   </div>
 
       </td>

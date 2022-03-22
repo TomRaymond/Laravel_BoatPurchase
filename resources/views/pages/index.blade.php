@@ -30,7 +30,7 @@
             <li class="list-group-item">- Unlikely to get stuck in the Suez canal</li>
             <li class="list-group-item">- Raises your self-esteem</li>
         </ul>
-        <button type="button" class="btn btn-primary btn-lg" onclick="window.location='{{ URL::route('checkout.credit-card'); }}'">Buy Now!</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="window.location='{{ URL::route('checkout.credit-card'); }}'">Preorder Now!</button>
     </div> 
 </div>
 

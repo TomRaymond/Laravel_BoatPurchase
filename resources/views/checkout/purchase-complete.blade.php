@@ -11,7 +11,7 @@
         <h1>Thank you for your boat purchase</h1>
     </div>
     <div class="row mt-4">
-        <h2>We will email you shortly to arrange delivery </h2>
+        <h2>We will be in touch once your pre-order is available for delivery</h2>
     </div>
 </div>
 
